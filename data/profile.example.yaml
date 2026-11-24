@@ -19,6 +19,29 @@ candidate:
   website: "https://example.com"
 
 # Salary tiers (EUR equivalent). Omit a tier to disable it.
+# Optional B2B / contractor policy. By default postings that only offer B2B, freelance or
+# independent-contractor engagements are dropped.
+# contract:
+#   b2b: accept          # drop (default) | accept
+#   b2b_bonus: 10        # score bonus for accepted B2B postings (tagged contract:b2b)
+#   b2b_patterns:        # extra regexes marking a posting as B2B
+#     - "\\bcontract[\\s-]to[\\s-]hire\\b"
+
+# Optional work arrangement preference (remote / hybrid / on-site). Detected from the job
+# location, title and description and tagged mode:remote|hybrid|onsite|unknown.
+# Without this section work mode does not affect the score. Example promoting remote work:
+# work_mode:
+#   remote_bonus: 30       # fully remote / home based / work from anywhere
+#   hybrid_bonus: 15       # partly remote, hybrid model, flexible location
+#   onsite_penalty: -30    # explicitly on-site / in-office / "not remote"
+#   unknown_penalty: -10   # description says nothing about the arrangement
+#   drop_onsite: false     # true removes explicitly on-site postings altogether
+#   remote_patterns:       # extra regexes counted as remote
+#     - "\\bdistributed\\s+team\\b"
+#   ignore_patterns:       # boilerplate that should not count ("remote work where possible")
+#     - "remote\\s+work\\s+where\\s+possible"
+
+# Target compensation tiers (in EUR equivalent) used for salary scoring & notification alerts
 compensation:
   currency: "EUR"
   target_high: 150000    # +35 score

@@ -37,7 +37,9 @@ class WorkdaySource(BaseSource):
         jobs = []
         limit = 20
         offset = 0
-        max_pages = 5
+        max_jobs = int((target.extra or {}).get("max_jobs", 100))
+        max_pages = max(1, -(-max_jobs // limit))
+        total = None
 
         for _ in range(max_pages):
             payload = json.dumps({
@@ -94,6 +96,9 @@ class WorkdaySource(BaseSource):
                     )
                 )
             offset += limit
-            if offset >= data.get("total", 0):
+            # Workday only reports the real total on the first page; later pages say 0.
+            if total is None:
+                total = data.get("total") or 0
+            if offset >= total:
                 break
         return jobs

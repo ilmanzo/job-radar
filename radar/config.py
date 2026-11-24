@@ -4,6 +4,7 @@ import functools
 import glob
 import os
 import re
+import sys
 from typing import Any, Dict, List, Optional, Tuple
 import yaml
 
@@ -15,12 +16,6 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 
 class ConfigError(Exception):
     """Required personal configuration is missing."""
-
-
-def _env_path(var: str) -> Optional[str]:
-    """Path from env var with ~ expanded; None if unset or empty."""
-    val = os.environ.get(var)
-    return os.path.expanduser(val) if val else None
 
 
 def load_dotenv_if_present(dotenv_path: Optional[str] = None):
@@ -46,6 +41,24 @@ def load_dotenv_if_present(dotenv_path: Optional[str] = None):
 
 # Automatically load local .env if present
 load_dotenv_if_present()
+
+
+def _env_path(var: str) -> Optional[str]:
+    """Resolve a file path from an environment variable.
+
+    Relative paths (e.g. ``data/profile_me.yaml`` in .env) are resolved against
+    the current working directory if the file exists there, otherwise against
+    the project root, so the configuration works regardless of where the
+    radar is launched from (cron, systemd, another directory).
+    """
+    value = os.environ.get(var)
+    if not value:
+        return None
+    path = os.path.expanduser(value)
+    if os.path.isabs(path) or os.path.exists(path):
+        return os.path.abspath(path)
+    return os.path.join(BASE_DIR, path)
+
 
 SETTINGS_FILE = (
     _env_path("JOB_RADAR_CONFIG")
@@ -122,9 +135,19 @@ def load_settings() -> dict:
     return {}
 
 
+_PROFILE_MISSING_WARNED = False
+
+
 def load_profile() -> dict:
     """Load candidate career profile, domain expertise, and scoring weights."""
     if not PROFILE_FILE or not os.path.exists(PROFILE_FILE):
+        global _PROFILE_MISSING_WARNED
+        if PROFILE_FILE and not _PROFILE_MISSING_WARNED:
+            _PROFILE_MISSING_WARNED = True
+            print(
+                f"Warning: candidate profile not found at {PROFILE_FILE}.",
+                file=sys.stderr,
+            )
         return {}
     try:
         mtime = os.path.getmtime(PROFILE_FILE)

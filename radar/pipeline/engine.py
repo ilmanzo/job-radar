@@ -6,11 +6,13 @@ from radar.models import Job, PipelineContext, RawJob
 from radar.pipeline.base import PipelineStage
 from radar.pipeline.contract import ContractStage
 from radar.pipeline.freshness import FreshnessStage
+from radar.pipeline.keywords import KeywordWeightStage
 from radar.pipeline.location import LocationStage
 from radar.pipeline.profile import ProfileMatchStage
 from radar.pipeline.role import RoleSeniorityStage
 from radar.pipeline.salary import SalaryStage
 from radar.pipeline.title import TitleFilterStage
+from radar.pipeline.workmode import WorkModeStage
 
 
 class PipelineEngine:
@@ -24,6 +26,8 @@ class PipelineEngine:
             RoleSeniorityStage(),
             SalaryStage(),
             ProfileMatchStage(),
+            KeywordWeightStage(),
+            WorkModeStage(),
             FreshnessStage(),
         ]
 

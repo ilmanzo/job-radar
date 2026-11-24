@@ -28,7 +28,7 @@ Job Radar is an automated career intelligence and scoring engine. Scoring is dri
 │                         EMEA/global remote +10 · foreign single-country  │
 │                         lock -40 · non-EU / wrong-city drop              │
 │                         (countries.yaml + profile + target overrides)    │
-│  3. ContractStage       drop B2B · tier bonus · home entity +35 / EOR +25│
+│  3. ContractStage       B2B drop/accept policy · tier bonus · entity/EOR │
 │  4. RoleSeniorityStage  systems/SRE relevance, seniority, tech stack     │
 │  5. SalaryStage         EUR normalization · profile tiers +35/+25/+15/-10│
 │  6. ProfileMatchStage   profile skill_matrix → match % + pitch bullets   │
@@ -53,7 +53,7 @@ Job Radar is an automated career intelligence and scoring engine. Scoring is dri
 ```
 job-radar/
 ├── data/
-│   ├── profile.example.yaml      # Template: candidate, salary tiers, skill_matrix, weights
+│   ├── profile.example.yaml      # Template: candidate, salary, contract, work_mode, skills, weights
 │   ├── targets.example.yaml      # Template: tracked companies & ATS boards
 │   ├── tech_stack.example.yaml   # Template: tracked technology regexes
 │   ├── countries.yaml            # Country aliases & cities used by LocationStage
@@ -76,7 +76,8 @@ job-radar/
 │   │   └── pagopa.py
 │   ├── pipeline/                 # Stages (fixed order in engine.py)
 │   │   ├── base.py, engine.py
-│   │   └── title.py, location.py, contract.py, role.py, salary.py, profile.py, freshness.py
+│   │   └── title.py, location.py, contract.py, role.py, salary.py, profile.py,
+│   │       keywords.py, workmode.py, freshness.py
 │   └── sinks/                    # Sink plugins (auto-discovered)
 │       └── base.py, db_sink.py, rss_sink.py, obsidian_sink.py, telegram_sink.py, desktop_sink.py
 ├── radar.py                      # Entrypoint
