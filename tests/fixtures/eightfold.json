@@ -1,0 +1,4 @@
+{"status": 200, "data": {"count": 2, "positions": [
+  {"id": 563121777429415, "name": "Engineering Manager, Radio", "locations": ["Berlin, Berlin, Germany"], "postedTs": 1794992029, "workLocationOption": "hybrid", "positionUrl": "/careers/job/563121777429415"},
+  {"id": 563121777429416, "name": "Senior Software Engineer", "standardizedLocations": ["Munich, DE"], "postedTs": 1794992030, "positionUrl": "/careers/job/563121777429416"}
+]}}

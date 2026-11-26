@@ -222,3 +222,4 @@ class ProxmoxSource(BaseSource):
             # shortcut: zero parsed postings is treated as a layout change, not "no openings"
             raise FetchError("Proxmox: no postings parsed; page layout changed?")
         return jobs
+

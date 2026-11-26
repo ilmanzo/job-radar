@@ -16,7 +16,9 @@ Job Radar is an automated career intelligence and scoring engine. Scoring is dri
 ┌──────────────────────────────────────────────────────────────────────────┐
 │ Source plugins (radar/sources, keyed by `ats`)                           │
 │  greenhouse · lever · ashby · workday · smartrecruiters · recruitee ·    │
-│  workable · deel · custom.py (amazon, dynatrace, sidero, proxmox) ·      │
+│  workable · deel · teamtailor · rss · successfactors · eightfold ·       │
+│  oracle_orc · jibe · personio · talentadore ·                            │
+│  custom.py (amazon, dynatrace, sidero, proxmox) ·                        │
 │  scraper ──► HTML scraper plugins (radar/scrapers, e.g. pagopa)          │
 └───────────────────────────────┬──────────────────────────────────────────┘
                                 │ list[RawJob]   (empty result ⇒ stored jobs kept active)
@@ -80,6 +82,8 @@ job-radar/
 │   │   ├── base.py               # BaseSource interface
 │   │   ├── greenhouse.py, lever.py, ashby.py (with salary tiers), workday.py,
 │   │   │   smartrecruiters.py, recruitee.py, workable.py, deel.py
+│   │   ├── teamtailor.py, rss.py, successfactors.py, eightfold.py, oracle_orc.py,
+│   │   │   jibe.py, personio.py, talentadore.py   # feed-based sources (_feed.py helpers)
 │   │   ├── custom.py             # Amazon, Dynatrace, Sidero, Proxmox
 │   │   └── scraper.py            # Bridge `ats: scraper` → HTML scraper plugins
 │   ├── scrapers/                 # HTML scraper plugins (auto-discovered)

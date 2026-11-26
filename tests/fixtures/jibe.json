@@ -1,0 +1,4 @@
+{"totalCount": 2, "count": 2, "jobs": [
+  {"data": {"slug": "92468", "req_id": "92468", "title": "GPU Performance Engineer", "description": "<p>Make kernels fast</p>", "location_name": "DE,Berlin", "full_location": "Berlin, Germany", "posted_date": "2026-10-22T08:41:00+0000", "canonical_url": "https://careers.acme.example/careers-home/jobs/92468"}},
+  {"data": {"slug": "92469", "req_id": "92469", "title": "Engineering Manager, Compilers", "description": "", "location_name": "DE,Munich", "posted_date": "2026-10-23T08:41:00+0000"}}
+]}

@@ -3,7 +3,7 @@
 Automated job discovery, ATS scraping, and semantic scoring engine targeting Linux, Kernel, Systems, Observability, and Cloud Platform engineering roles.
 
 **Key Highlights:**
-- **ATS API Ingestion & Extensible Scrapers**: Queries public REST / GraphQL ATS endpoints directly (Greenhouse, Lever, Ashby, Workday, Deel, Recruitee, Workable, SmartRecruiters) and supports modular HTML scrapers for non-ATS portals (e.g. PagoPA, Fly.io).
+- **ATS API Ingestion & Extensible Scrapers**: Queries public REST / GraphQL ATS endpoints directly (Greenhouse, Lever, Ashby, Workday, Deel, Recruitee, Workable, SmartRecruiters, Teamtailor, SuccessFactors, Eightfold, Oracle Recruiting Cloud, iCIMS Jibe, Personio, Talentadore, generic RSS) and supports modular HTML scrapers for non-ATS portals (e.g. PagoPA, Fly.io).
 - **Multi-Stage Scoring Pipeline**: Filters non-engineering roles, evaluates geographic eligibility & legal entity status, normalizes compensation, and scores candidate skill alignment.
 - **100% Local Semantic Vector Search**: Offline feature-hashed subword vectorizer (`local-subword-hash-384`) in pure Python. Zero external API calls, zero C extensions, and lightweight zero-ops design. Evaluates semantic similarity against candidate domain pillars and awards $+5$ to $+30$ bonus points for non-exact technical synonyms.
 - **Deferred Asynchronous Embeddings**: High-speed ATS ingestion decoupled from embedding math; `radar embed` processes un-embedded jobs asynchronously or via cron chaining.
@@ -69,7 +69,8 @@ I live in <COUNTRY> and can also work in <OTHER COUNTRIES>. I want <ROLE TYPES>,
        name: "Company"
        tier: big_tech | enterprise_infra | scaleup
        category: "short domain label"
-       ats: greenhouse | lever | ashby | workday | smartrecruiters | recruitee | workable | deel
+       ats: greenhouse | lever | ashby | workday | smartrecruiters | recruitee | workable | deel |
+            teamtailor | rss | successfactors | eightfold | oracle_orc | jibe | personio | talentadore
        board: <ATS board id, e.g. the slug in boards.greenhouse.io/<board> or jobs.lever.co/<board>>
        # workday only: site: <site>, sub_domain: wd1..wd12, search_text: <optional filter>
        entity_in_home_country: true|false   # legal entity in MY country
@@ -137,6 +138,19 @@ python3 radar.py discover list
 python3 radar.py discover cncf "runtime"
 python3 radar.py discover add sysdig
 ```
+Feed-based ATS types and the target fields they need:
+
+| `ats` | Fields |
+|---|---|
+| `teamtailor` | `board` (the `<board>.teamtailor.com` subdomain) or `url` (the `/jobs.rss` feed on a custom domain) |
+| `rss` | `url` (any RSS 2.0 job feed), optional `location` used when items carry none |
+| `successfactors` | `url` (career site root that serves `/search/`), optional `search_text` |
+| `eightfold` | `url` (career site host), `board` (tenant domain), `search_text` (location), optional `careers_url` |
+| `oracle_orc` | `url` (REST host), `board` (site number, e.g. `CX_1`), `site_url` (candidate site), optional `search_text` |
+| `jibe` | `url` (career site host), optional `search_text` (location) |
+| `personio` | `board` (the `<board>.jobs.personio.de` subdomain) |
+| `talentadore` | `board` (feed key from the career page widget) |
+
 Non-ATS career sites need an HTML scraper plugin: see [ARCHITECTURE.md](ARCHITECTURE.md#adding-a-custom-html-scraper-plugin-non-ats-sites).
 
 ### Explore Matched Roles

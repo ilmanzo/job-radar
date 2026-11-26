@@ -57,8 +57,8 @@ countries:
     aliases: [norway]
     cities: [oslo, bergen]
   finland:
-    aliases: [finland]
-    cities: [helsinki, espoo]
+    aliases: [finland, suomi]
+    cities: [helsinki, helsingfors, espoo, esbo, vantaa, vanda, tampere, tammerfors, turku, åbo, oulu, jyväskylä, lahti, kuopio]
   romania:
     aliases: [romania]
     cities: [bucharest, cluj]

@@ -30,12 +30,20 @@ def http_get_text(
     timeout: int = 20,
     context: Optional[ssl.SSLContext] = None,
     retry_429: bool = False,
+    opener: Optional[urllib.request.OpenerDirector] = None,
 ) -> str:
-    """GET (POST when `data` is given) and return the decoded body; raise FetchError on any failure."""
+    """GET (POST when `data` is given) and return the decoded body; raise FetchError on any failure.
+
+    `opener` lets a source keep cookies between requests (urllib.request.build_opener(...)).
+    """
     req = urllib.request.Request(url, data=data, headers={"User-Agent": DEFAULT_UA, **(headers or {})})
     for attempt in range(2 if retry_429 else 1):
         try:
-            with urllib.request.urlopen(req, timeout=timeout, context=context) as resp:
+            if opener is not None:
+                ctx = opener.open(req, timeout=timeout)
+            else:
+                ctx = urllib.request.urlopen(req, timeout=timeout, context=context)
+            with ctx as resp:
                 raw = resp.read()
                 charset = resp.headers.get_content_charset() or "utf-8"
             return raw.decode(charset, errors="replace")

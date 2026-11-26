@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workzag-jobs>
+<position>
+    <id>2882343</id>
+    <subcompany>Acme GmbH</subcompany>
+    <additionalOffices><office>Remote (Deutschland)</office></additionalOffices>
+    <office>Berlin (hybrid)</office>
+    <name>Engineering Manager</name>
+    <jobDescriptions><jobDescription><name>Role</name><value>&lt;p&gt;Lead the team&lt;/p&gt;</value></jobDescription></jobDescriptions>
+    <createdAt>2026-11-10T08:40:46+00:00</createdAt>
+</position>
+<position>
+    <id>2882344</id>
+    <office>Munich</office>
+    <name>QA Engineer</name>
+    <jobDescriptions></jobDescriptions>
+    <createdAt>2026-11-11T08:40:46+00:00</createdAt>
+</position>
+</workzag-jobs>

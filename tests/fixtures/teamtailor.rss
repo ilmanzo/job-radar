@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:tt="https://teamtailor.com/locations">
+  <channel>
+    <title>Acme</title>
+    <link>https://acme.teamtailor.com/jobs</link>
+    <item>
+      <title>Platform Engineering Manager</title>
+      <description>&lt;p&gt;Lead the &amp;amp; platform team&lt;/p&gt;</description>
+      <pubDate>Thu, 19 Nov 2026 12:57:25 +0200</pubDate>
+      <link>https://careers.acme.example/jobs/101-platform-engineering-manager</link>
+      <guid>1d858e1d-3baf-4002-a239-1c482a8c614b</guid>
+      <remoteStatus>hybrid</remoteStatus>
+      <tt:locations>
+        <tt:location><tt:name>Berlin</tt:name><tt:city>Berlin</tt:city><tt:country>Germany</tt:country></tt:location>
+        <tt:location><tt:name>Munich</tt:name><tt:city>Munich</tt:city><tt:country>Germany</tt:country></tt:location>
+      </tt:locations>
+    </item>
+    <item>
+      <title>Embedded Software Engineer</title>
+      <description>&lt;p&gt;Short description&lt;/p&gt;</description>
+      <pubDate>Wed, 18 Nov 2026 09:00:00 +0200</pubDate>
+      <link>https://careers.acme.example/jobs/102-embedded-software-engineer</link>
+      <guid>2e969f2e-4cbf-5113-b34a-2d593b9d725c</guid>
+      <tt:locations>
+        <tt:location><tt:name>Hamburg</tt:name><tt:city>Hamburg</tt:city><tt:country>Germany</tt:country></tt:location>
+      </tt:locations>
+    </item>
+  </channel>
+</rss>

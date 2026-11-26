@@ -1,0 +1,4 @@
+{"version": 2, "company": "Acme", "jobs": [
+  {"id": "gz4Qn", "name": "Senior Software Developer", "link": "https://ats.talentadore.com/apply/senior-software-developer/abc", "description_text": "Build network automation", "start_date": "2026-09-28T21:00:00Z", "updated": "2026-11-16T13:42:24Z", "location": "Example Street 5", "city": "Berlin", "country": "Germany"},
+  {"name": "No id, must be skipped", "link": "https://ats.talentadore.com/apply/x"}
+]}
